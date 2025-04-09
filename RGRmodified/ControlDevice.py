@@ -40,8 +40,7 @@ class ControlDevice:
                 return str(self._editor.number)
             
             elif input_str == 'Frac':
-                self._editor.add_fraction()
-                return self._editor.buffer
+                return self._editor.add_fraction()
             
             elif input_str == 'Sqr':
                 self._editor.number.square()
@@ -61,6 +60,20 @@ class ControlDevice:
                     self._calculate()
                 return self._editor._buffer
             
+            elif input_str == 'Backspace':
+                return self._editor.process_backspace()
+            
+            elif input_str == 'Delete':
+                return self._editor.process_delete()
+            
+            # elif input_str == 'Left':
+            #     self._editor.move_cursor_left()
+            #     return self._editor.buffer
+            
+            # elif input_str == 'Right':
+            #     self._editor.move_cursor_right()
+            #     return self._editor.buffer
+
             elif input_str.isdigit() or input_str == '.':
                 self._editor.process_digit(input_str)
                 return self._editor.buffer
