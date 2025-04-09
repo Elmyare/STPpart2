@@ -47,13 +47,19 @@ class ControlDevice:
                 self._editor.number.square()
                 self._editor._waiting_for_operand = True
                 self._editor._buffer = str(self._editor.number)
-                return str(self._editor.number)
+                # Если есть текущая операция, сразу вычисляем
+                if self._processor._current_operation:
+                    self._calculate()
+                return self._editor._buffer
             
             elif input_str == 'Rev':
                 self._editor.number.inverse()
                 self._editor._waiting_for_operand = True
                 self._editor._buffer = str(self._editor.number)
-                return str(self._editor.number)
+                # Если есть текущая операция, сразу вычисляем
+                if self._processor._current_operation:
+                    self._calculate()
+                return self._editor._buffer
             
             elif input_str.isdigit() or input_str == '.':
                 self._editor.process_digit(input_str)

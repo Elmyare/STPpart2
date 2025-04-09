@@ -7,6 +7,7 @@ class NumberEditor:
         self._buffer = "0"
         self._number = Number()
         self._waiting_for_operand = True
+        self._last_function_result = None
     
     @property
     def number(self):
@@ -49,6 +50,20 @@ class NumberEditor:
         self._number.negate()
         self._buffer = str(self._number)
     
+    def square(self):
+        self._number.square()
+        self._last_function_result = Number(self._number.value)  # Сохраняем результат
+        self._waiting_for_operand = True
+        self._buffer = str(self._number)
+        return self._buffer
+
+    def inverse(self):
+        self._number.inverse()
+        self._last_function_result = Number(self._number.value)  # Сохраняем результат
+        self._waiting_for_operand = True
+        self._buffer = str(self._number)
+        return self._buffer
+
     def _update_number(self):
         try:
             if '/' in self._buffer:
